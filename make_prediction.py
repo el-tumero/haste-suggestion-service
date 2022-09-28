@@ -9,23 +9,18 @@ def make_prediction(first:np.ndarray, second:np.ndarray):
     # print(first)
     # print(second)
 
-    pair1 = np.concatenate((first, second))
-    pair2 = np.concatenate((second, first))
+    pair = np.concatenate((first, second))
 
-    pair1 = pair1 / 100
-    pair2 = pair2 / 100
+    if(second[0] > first[0]):
+        pair = np.concatenate((second,first))
 
-    print(pair1, pair2)
+    pair = pair / 100
 
-    prediction = model.predict(np.array([pair1, pair2]))
+    print(pair)
+
+    prediction = model.predict(np.array([pair]))
 
     print(prediction)
-
-    # pair = np.concatenate((first, second))
-
-    # pair = pair / 100
-
-    # prediction = model.predict(np.array([pair]))
 
     return prediction[0, 0]
 
